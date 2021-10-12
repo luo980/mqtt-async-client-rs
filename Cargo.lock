@@ -399,6 +399,7 @@ dependencies = [
  "maplit",
  "mqttrs",
  "rustls",
+ "serde",
  "structopt",
  "tokio",
  "tokio-rustls",
@@ -696,6 +697,12 @@ dependencies = [
  "core-foundation-sys",
  "libc",
 ]
+
+[[package]]
+name = "serde"
+version = "1.0.130"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f12d06de37cf59146fbdecab66aa99f9fe4f78722e3607577a5375d66bd0c913"
 
 [[package]]
 name = "sha-1"

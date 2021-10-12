@@ -1,0 +1,120 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in library 'mqtt-async-client'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--lib",
+                    "--package=mqtt-async-client"
+                ],
+                "filter": {
+                    "name": "mqtt-async-client",
+                    "kind": "lib"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'mqtt-async-client'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=mqtt-async-client",
+                    "--package=mqtt-async-client"
+                ],
+                "filter": {
+                    "name": "mqtt-async-client",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'mqtt-async-client'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=mqtt-async-client",
+                    "--package=mqtt-async-client"
+                ],
+                "filter": {
+                    "name": "mqtt-async-client",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug example 'mqttc'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--example=mqttc",
+                    "--package=mqtt-async-client"
+                ],
+                "filter": {
+                    "name": "mqttc",
+                    "kind": "example"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in example 'mqttc'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--example=mqttc",
+                    "--package=mqtt-async-client"
+                ],
+                "filter": {
+                    "name": "mqttc",
+                    "kind": "example"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'integration_test'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--test=integration_test",
+                    "--package=mqtt-async-client"
+                ],
+                "filter": {
+                    "name": "integration_test",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}
