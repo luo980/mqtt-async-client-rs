@@ -46,7 +46,11 @@ async fn main () {
 
     println!("Here");
 
-    if let Err(e) = publish(temperature_args, client_args).await{
+    if let Err(e) = publish(pub_args, &client_args).await{
+        error!("Error is {:?}", e)
+    };
+
+    if let Err(e) = publish(temperature_args, &client_args).await{
         error!("Error is {:?}", e)
     };
 
@@ -56,14 +60,10 @@ async fn payload_from_json(path: &str) -> Vec<u8>{
     let data = fs::read_to_string(path).expect("Can't Read");
     let serialized_payload:serde_json::Value = serde_json::from_str(&data).expect("Can't convert");
     let result = serde_json::to_vec(&serialized_payload).expect("Format Error");
-    // match result{
-    //     Some(x) => x.clone(),
-    //     None => None,
-    // }
     result
 }
 
-fn client_from_args(args: ClientArgs) -> Result<Client> {
+fn client_from_args(args: &ClientArgs) -> Result<Client> {
     let mut b = Client::builder();
     if let Err(e) = b.set_url_string(&args.url){
         println!("Error is {:?}", e);
@@ -73,9 +73,9 @@ fn client_from_args(args: ClientArgs) -> Result<Client> {
     b.build()
 }
 
-async fn publish (pubargs: PubArgs, args: ClientArgs) -> Result<()> {
+async fn publish (pubargs: PubArgs, args: &ClientArgs) -> Result<()> {
     println!("Here");
-    let mut client = client_from_args(args)?;
+    let mut client = client_from_args(&args)?;
     println!("Here");
     client.connect().await?;
     let mut p = PublishOpts::new(pubargs.topic, pubargs.payload);

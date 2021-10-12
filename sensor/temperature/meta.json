@@ -1,9 +1,0 @@
-{
-    "membership": "$hw/events/node/+/membership/get",
-    "membership_result": "$hw/events/node/+/membership/get/result",
-    "device_state": "$hw/events/device/+/state/update",
-    "devicetwin_get": "$hw/events/device/+/twin/+",
-    "hw_upload": "$hw/events/upload/#",
-    "sys_upload_record": "SYS/dis/upload_records",
-    "membership_topic": "$ke/events/+/device/data/update",
-}
