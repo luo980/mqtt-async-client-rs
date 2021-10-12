@@ -1,0 +1,74 @@
+{
+    "apiVersion": "devices.kubeedge.io/v1alpha2",
+    "kind": "Device",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"devices.kubeedge.io/v1alpha2\",\"kind\":\"Device\",\"metadata\":{\"annotations\":{},\"labels\":{\"description\":\"dht11\"},\"name\":\"dht11-sensor-1\",\"namespace\":\"default\"},\"spec\":{\"deviceModelRef\":{\"name\":\"dht11-sensor-model\"},\"nodeSelector\":{\"nodeSelectorTerms\":[{\"matchExpressions\":[{\"key\":\"\",\"operator\":\"In\",\"values\":[\"hit-tg-edge-1\"]}]}]}},\"status\":{\"twins\":[{\"desired\":{\"metadata\":{\"type\":\"string\"},\"value\":\"\"},\"propertyName\":\"temperature\"},{\"desired\":{\"metadata\":{\"type\":\"string\"},\"value\":\"\"},\"propertyName\":\"humidity\"}]}}\n"
+        },
+        "creationTimestamp": "2021-07-08T08:20:07Z",
+        "generation": 942846,
+        "labels": {
+            "description": "dht11"
+        },
+        "name": "dht11-sensor-1",
+        "namespace": "default",
+        "resourceVersion": "45382852",
+        "uid": "8c3f0b48-e607-41a8-9532-eb4f5842149d"
+    },
+    "spec": {
+        "deviceModelRef": {
+            "name": "dht11-sensor-model"
+        },
+        "nodeSelector": {
+            "nodeSelectorTerms": [
+                {
+                    "matchExpressions": [
+                        {
+                            "key": "",
+                            "operator": "In",
+                            "values": [
+                                "hit-tg-edge-1"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "status": {
+        "twins": [
+            {
+                "desired": {
+                    "metadata": {
+                        "type": "string"
+                    },
+                    "value": ""
+                },
+                "propertyName": "temperature",
+                "reported": {
+                    "metadata": {
+                        "timestamp": "1627197733486",
+                        "type": "string"
+                    },
+                    "value": "35.50"
+                }
+            },
+            {
+                "desired": {
+                    "metadata": {
+                        "type": "string"
+                    },
+                    "value": ""
+                },
+                "propertyName": "humidity",
+                "reported": {
+                    "metadata": {
+                        "timestamp": "1627197733487",
+                        "type": "string"
+                    },
+                    "value": "30.00"
+                }
+            }
+        ]
+    }
+}

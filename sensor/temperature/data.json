@@ -1,0 +1,22 @@
+{
+    "event_id": "",
+    "timestamp": 0,
+    "twin": {
+        "temperature": {
+            "actual": {
+                "value": "30"
+            },
+            "metadata": {
+                "type": "Updated"
+            }
+        },
+        "humidity": {
+            "actual": {
+                "value": "80"
+            },
+            "metadata": {
+                "type": "Updated"
+            }
+        }
+    }
+}

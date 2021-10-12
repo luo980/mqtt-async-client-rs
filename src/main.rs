@@ -1,6 +1,7 @@
 use std::time::Duration;
 use serde::{Serialize, Deserialize};
-
+use serde_json;
+use std::fs;
 use log::error;
 use mqtt_async_client::{
     client::{
@@ -16,36 +17,50 @@ struct ClientArgs{
 }
 
 struct PubArgs{
-    payload:        String,
+    payload:        Vec<u8>,
     topic:          String,
     qos:            u8,
 }
 
 #[tokio::main]
 async fn main () {
-    let serialized_payload;
+
     println!("Here");
     let client_args = ClientArgs{
         url:        "mqtt://192.168.1.5:1883".to_string(),
     };
 
     let pub_args = PubArgs{
-        payload:    "Online".to_string(),
+        payload:    "Online".as_bytes().to_vec(),
         topic:      "/Online".to_string(),
         qos:        1,
     };
 
+
+    let pl = payload_from_json("sensor/data.json").await;
     let temperature_args = PubArgs{
-        payload:    "asdsa".to_string(),
-        topic:      "",
+        payload:    pl,
+        topic:      "/Online".to_string(),
         qos:        1,
     };
 
     println!("Here");
-    if let Err(e) = publish(pub_args, client_args).await{
+
+    if let Err(e) = publish(temperature_args, client_args).await{
         error!("Error is {:?}", e)
     };
 
+}
+
+async fn payload_from_json(path: &str) -> Vec<u8>{
+    let data = fs::read_to_string(path).expect("Can't Read");
+    let serialized_payload:serde_json::Value = serde_json::from_str(&data).expect("Can't convert");
+    let result = serde_json::to_vec(&serialized_payload).expect("Format Error");
+    // match result{
+    //     Some(x) => x.clone(),
+    //     None => None,
+    // }
+    result
 }
 
 fn client_from_args(args: ClientArgs) -> Result<Client> {
@@ -63,7 +78,7 @@ async fn publish (pubargs: PubArgs, args: ClientArgs) -> Result<()> {
     let mut client = client_from_args(args)?;
     println!("Here");
     client.connect().await?;
-    let mut p = PublishOpts::new(pubargs.topic, pubargs.payload.as_bytes().to_vec());
+    let mut p = PublishOpts::new(pubargs.topic, pubargs.payload);
     p.set_qos(int_to_qos(pubargs.qos));
     let results_client = client.publish(&p);
     if let Err(e) = results_client.await{
